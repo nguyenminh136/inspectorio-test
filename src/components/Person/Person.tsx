@@ -4,7 +4,6 @@ import { AppBar, Avatar, Button, Divider, List, ListItem, ListItemAvatar, ListIt
 import React from "react";
 import { useNavigate } from 'react-router'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useParams } from "react-router-dom";
 const Person = () => {
     const { name } = useParams();
@@ -27,29 +26,19 @@ const Person = () => {
         })
     }, [name])
     let navigate = useNavigate()
-    const darkTheme = createTheme({
-        palette: {
-            mode: 'dark',
-            primary: {
-                main: '#1976d2',
-            },
-        },
-    });
     return (
         <React.Fragment>
-            <ThemeProvider theme={darkTheme}>
-                <AppBar position="static" color="primary">
-                    <Toolbar sx={{ display: "flex", justifyContent: "center" }} variant="dense">
-                        <Button sx={{ position: "absolute", left: 0 }} onClick={() => navigate('/')} variant="text" color="inherit" startIcon={<ArrowBackIosIcon />}>
-                            Back
-                        </Button>
-                        <Typography variant="h6" color="inherit" component="div">
-                            Person
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-            </ThemeProvider>
-            <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+            <AppBar position="static" color="primary">
+                <Toolbar sx={{ display: "flex", justifyContent: "center" }} variant="dense">
+                    <Button sx={{ position: "absolute", left: 0 }} onClick={() => navigate('/')} variant="text" color="inherit" startIcon={<ArrowBackIosIcon />}>
+                        Back
+                    </Button>
+                    <Typography variant="h6" color="inherit" component="div">
+                        Person
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+            <List sx={{ width: '100%', bgcolor: 'white' }}>
                 <ListItem alignItems="flex-start">
                     <ListItemAvatar>
                         <Avatar alt="Remy Sharp" src={user?.avatar_url} />
@@ -62,7 +51,7 @@ const Person = () => {
                                     sx={{ display: 'inline' }}
                                     component="span"
                                     variant="body2"
-                                    color="text.primary"
+                                    color="black"
                                 >
                                     {user?.location}
                                 </Typography>
@@ -70,7 +59,7 @@ const Person = () => {
                         }
                     />
                 </ListItem>
-                <Divider variant="inset" component="li" />
+                <Divider variant="inset" component="li"  sx={{ borderColor: "#bdbdbd" }}/>
             </List>
         </React.Fragment>
     )
